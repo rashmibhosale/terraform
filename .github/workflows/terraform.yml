@@ -1,0 +1,45 @@
+name: github-terraform
+
+# Controls when the workflow will run
+on:
+    # Triggers the workflow on push or pull request events but only for the "main" branch
+    push:
+      branches:
+      - main
+    pull_request:
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENENT_ID }}
+  #ROOT_PATH: ${{ github.workspace }}/terraform-bhs
+  ROOT_PATH: '../terraform-bhs'
+
+jobs:
+    terraform:
+      name: 'Terraform Plan Stage'
+      runs-on: ubuntu-latest
+      environment: uat
+
+      defaults:
+        run:
+          shell: bash
+    
+      steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+    
+      - name: Setup terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          #terrform_version: 0.12.25
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
+      - name: Terraform init
+        run: terraform init
+        working-directory: ${{ env.ROOT_PATH }}
+
+      - name: terraform plan
+        run: terraform plan
+        working-directory: ${{ env.ROOT_PATH }}
