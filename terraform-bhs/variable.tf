@@ -24,3 +24,12 @@ variable "publicip_name" {
   default = "bhs-public-ip-01"
 }
 
+variable "nsg_name" {
+  type = string
+  default = "bhs-nsg-01"
+}
+
+variable "nic_name" {
+  type = string
+  default = "bhs-nic-01"
+}
