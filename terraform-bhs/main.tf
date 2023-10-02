@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source = "hashicorp/azurerm"
-      version = "3.0"
+      version = "0.14.8"
     }
   }
   # Defining the location remote satate file, so that multiple user can work together.
