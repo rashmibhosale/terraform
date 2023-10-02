@@ -84,7 +84,7 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   admin_username = "rajeev"
   admin_ssh_key {
     username   = "rajeev"
-    public_key = file("${path.module}/ssh-key/id_rsa.pub")
+    public_key = file("${path.module}/ssh-key/ssh_key.pub")
   }
 
   os_disk {
