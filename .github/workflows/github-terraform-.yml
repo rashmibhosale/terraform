@@ -38,6 +38,8 @@ jobs:
           tf_actions_version: 3.75.0
           tf_actions_subcommand: 'fmt'
           tf_actions_working_dir: "./terraform-bhs"
+        env:
+          TF_ACTION_NODE_RUNTIME: '12'
       
       - name: 'Terraform init'
         uses: hashicorp/terraform-github-actions@master
