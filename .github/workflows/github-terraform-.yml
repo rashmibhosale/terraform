@@ -35,7 +35,7 @@ jobs:
       - name: 'Terraform format'
         uses: hashicorp/terraform-github-actions@master
         with:
-          tf_actions_version: 3.75.0
+          tf_actions_version: 3.0
           tf_actions_subcommand: 'fmt'
           tf_actions_working_dir: "./terraform-bhs"
         env:
@@ -44,21 +44,21 @@ jobs:
       - name: 'Terraform init'
         uses: hashicorp/terraform-github-actions@master
         with:
-          tf_actions_version: 3.75.0
+          tf_actions_version: 3.0
           tf_actions_subcommand: 'init'
           tf_actions_working_dir: "./terraform-bhs"
       
       - name: 'Terraform validate'
         uses: hashicorp/terraform-github-actions@master
         with:
-          tf_actions_version: 3.75.0
+          tf_actions_version: 3.0
           tf_actions_subcommand: 'validate'
           tf_actions_working_dir: "./terraform-bhs"
 
       - name: 'Terraform plan'
         uses: hashicorp/terraform-github-actions@master
         with:
-          tf_actions_version: 3.75.0
+          tf_actions_version: 3.0
           tf_actions_subcommand: 'plan'
           tf_actions_working_dir: "./terraform-bhs"
       
@@ -66,6 +66,6 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: hashicorp/terraform-github-actions@master
         with:
-          tf_actions_version: 3.75.0
+          tf_actions_version: 3.0
           tf_actions_subcommand: 'apply'
           tf_actions_working_dir: "./terraform-bhs"
