@@ -74,3 +74,29 @@ resource "azurerm_network_interface" "nic" {
   }
 }
 
+resource "azurerm_linux_virtual_machine" "linvm" {
+  name                = var.linux_vm
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  network_interface_ids = [azurerm_network_interface.nic.id]
+  size                = "Standard_DS1_v2"
+
+  admin_username = "rajeev"
+  admin_ssh_key {
+    username   = "rajeev"
+    public_key = file("${path.module}/ssh-key/id_rsa.pub")
+  }
+
+  os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+
+  source_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "16.04-LTS"
+    version   = "latest"
+  }
+}
+

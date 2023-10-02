@@ -33,3 +33,8 @@ variable "nic_name" {
   type = string
   default = "bhs-nic-01"
 }
+
+variable "linux_vm" {
+  type = string
+  default = "bhs-linux-vm-01"
+}
