@@ -48,7 +48,7 @@ jobs:
       name: 'Terraform Apply Stage'
       runs-on: ubuntu-latest
       needs: terraform_plan # needs keyword similar to depends_on 
-      environment: uat
+      environment: demo
 
       defaults:
         run:
