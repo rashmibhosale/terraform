@@ -21,7 +21,7 @@ variable "subnet_name" {
 
 variable "publicip_name" {
   type    = string
-  default = "demo-public-ip"
+  default = "demo-public-ip-02"
 }
 
 variable "nsg_name" {
