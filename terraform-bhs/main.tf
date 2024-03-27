@@ -10,7 +10,7 @@ terraform {
     resource_group_name  = "backend-rg"
     storage_account_name = "terrastatebackend01"
     container_name       = "terraformstatefile"
-    key                  = "bhs.terraform.tfstate"
+    key                  = "demo.terraform.tfstate"
   }
 }
 provider "azurerm" {
@@ -41,7 +41,7 @@ resource "azurerm_public_ip" "pubip" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Static"
-  domain_name_label = "bhs"
+  domain_name_label = "demo"
 }
 
 resource "azurerm_network_security_group" "nsg" {
