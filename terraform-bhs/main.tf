@@ -79,7 +79,7 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   name                = "${var.linux_vm}-${count.index}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  network_interface_ids = [azurerm_network_interface.nic.id]
+  network_interface_ids = [azurerm_network_interface.nic[count.index].id]
   size                = "Standard_DS1_v2"
 
   admin_username = "rajeev"
