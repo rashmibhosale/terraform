@@ -103,3 +103,38 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   }
 }
 
+# Create user
+resource "azuread_user" "userA" {
+  user_principal_name = "userA@brashmi97gmail.onmicrosoft.com" 
+  display_name        = "userA"
+  password            = "Azure@123"
+}
+
+# Define the custom RBAC role
+resource "azurerm_role_definition" "custom_role" {
+ name               = "custom_role_creation"
+ scope              = "/subscriptions/var.AZURE_SUBSCRIPTION_ID"
+ description        = "demo"
+ permissions {
+    actions = [
+       #"Microsoft.Authorization/roleDefinitions/write",
+       #"Microsoft.Storage/storageAccounts/write"
+   actions    = var.role_actions
+]
+   not_actions = []
+ }
+assignable_scopes = [
+ "/subscriptions/var.AZURE_SUBSCRIPTION_ID"
+# "/subscriptions/var.AZURE_SUBSCRIPTION_ID/resourceGroups/var.resource_group_name"
+ ]
+}
+
+# Assign the custom RBAC role to a user
+resource "azurerm_role_assignment" "custom_role_assignment" {
+scope              = "/subscriptions/var.AZURE_SUBSCRIPTION_ID"
+role_definition_name = "azurerm_role_definition.custom_role.name"
+#role_definition_name = "Microsoft.Authorization/roleDefinitions/write"
+#role_definition_id = azurerm_role_definition.custom_role.id
+principal_id       = azuread_user.userA.object_id
+
+}
