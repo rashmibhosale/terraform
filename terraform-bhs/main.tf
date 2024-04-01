@@ -37,7 +37,8 @@ resource "azurerm_subnet" "subnet" {
 }
 
 resource "azurerm_public_ip" "pubip" {
-  name                = var.publicip_name
+  count               = 2
+  name                = "${var.publicip_name}-${count.index}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Static"
@@ -62,7 +63,8 @@ resource "azurerm_network_security_group" "nsg" {
 }
 
 resource "azurerm_network_interface" "nic" {
-  name                = var.nic_name
+  count               = 2
+  name                = "${var.nic_name}-${count.index}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
 
