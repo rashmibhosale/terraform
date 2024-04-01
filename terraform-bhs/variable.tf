@@ -11,12 +11,12 @@ variable "location" {
 
 variable "vnet_name" {
   type    = string
-  default = "demo-vnet-01"
+  default = "demo-vnet"
 }
 
 variable "subnet_name" {
   type    = string
-  default = "demo-subnet-01"
+  default = "demo-subnet"
 }
 
 variable "publicip_name" {
@@ -31,10 +31,10 @@ variable "nsg_name" {
 
 variable "nic_name" {
   type = string
-  default = "demo-nic-01"
+  default = "demo-nic"
 }
 
 variable "linux_vm" {
   type = string
-  default = "demo-linux-vm-01"
+  default = "demo-linux-vm"
 }
