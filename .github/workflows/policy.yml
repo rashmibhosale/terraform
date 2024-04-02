@@ -1,4 +1,4 @@
-name: Terraform
+name: Policy
 
 # Controls when the workflow will run
 on:
