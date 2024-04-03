@@ -23,11 +23,11 @@ provider "azurerm" {
 }
 
 provider "azuread" {
-  version = "~> 1.0"
+  version = "~> 2.0"
 }
 
 data "azuread_group" "gp" {
-  name = "demopolicygroup"
+  display_name = "demopolicygroup"
 }
 
 resource "azurerm_role_definition" "custom-vm-permission" {
@@ -52,7 +52,7 @@ resource "azurerm_role_definition" "custom-vm-permission" {
 }
 
 resource "azurerm_role_assignment" "assignrole-to-rg" {
-  scope = "/subscription/${var.subscription_id}/resourceGroup/demo-rg-01"
+  scope = "/subscription/${var.subscription_id}"
   role_definition_id = azurerm_role_definition.custom-vm-permission.id
   principal_id = data.azuread_group.gp.id
 }
