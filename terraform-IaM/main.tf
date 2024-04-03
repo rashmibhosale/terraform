@@ -47,12 +47,12 @@ resource "azurerm_role_definition" "custom-vm-permission" {
      ]
   }
   assignable_scopes = [ 
-    "/subscription/${var.subscription_id}"
+    "/subscriptions/${var.subscription_id}"
    ]
 }
 
 resource "azurerm_role_assignment" "assignrole-to-rg" {
-  scope = "/subscription/${var.subscription_id}"
+  scope = "/subscriptions/${var.subscription_id}"
   role_definition_id = azurerm_role_definition.custom-vm-permission.id
   principal_id = data.azuread_group.gp.id
 }
