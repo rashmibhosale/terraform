@@ -56,7 +56,7 @@ resource "azuread_user" "users" {
 
   display_name = "${each.value.first_name} ${each.value.last_name}"
   department   = each.value.department
-  job_title    = each.value.job_title
+  job_title    = each.value.job-title
 }
 
 resource "azuread_group" "groups" {
