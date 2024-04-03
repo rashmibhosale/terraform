@@ -23,7 +23,6 @@ provider "azurerm" {
 }
 
 provider "azuread" {
-  version = "~> 2.0"
 }
 
 data "azuread_group" "gp" {
@@ -49,7 +48,7 @@ resource "azurerm_role_definition" "custom-vm-permission" {
 }
 
 resource "azurerm_role_assignment" "assignrole-to-rg" {
-  scope = "/subscriptions/${var.subscription_id}/resourceGroup/demo-rg-01"
+  scope = "/subscriptions/${var.subscription_id}/resourceGroups/demo-rg-01"
   role_definition_name = azurerm_role_definition.custom-vm-permission.name
   principal_id = data.azuread_group.gp.id
 }
