@@ -46,7 +46,7 @@ resource "azuread_user" "users" {
         length(each.value.last_name)
     )
     force_password_change = true
-    user_principal_name = "${each.value.first_name}@local.domain_name"
+    user_principal_name = "${each.value.first_name}@brashmi97gmail.onmicrosoft.com"
     display_name = "${each.value.first_name} ${each.value.last_name}"
     department = each.value.department
     job_title = each.value.job-title
