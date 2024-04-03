@@ -32,7 +32,7 @@ data "azuread_domains" "default" {
 
 locals {
   domain_name = data.azuread_domains.default.domains.0.domain_name
-  users       = csvdecode(file("${path.module}/users.csv"))
+  users       = csvdecode(file("${path.module}/userlist.csv"))
 }
 resource "random_pet" "suffix" {
   length = 2
