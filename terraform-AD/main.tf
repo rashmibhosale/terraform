@@ -3,9 +3,9 @@
 Step 1. create user list.
 Step 2. fetch domain of AD using data resource.
 Step 3. Add user list & domains in Local as we calling this multiple times.
-Step 4. create formated email id like rajeev.ranjan@domain.com
+Step 4. create formated email id like user@domain.com
 Step 5. Create formated password like , first letter of first_name then last name and then count of last_name and last exclamation sign(!)
-        ex. rranjan6!
+        ex. scottm7!
 */
 
 terraform {
