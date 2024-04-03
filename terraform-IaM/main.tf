@@ -25,6 +25,13 @@ provider "azurerm" {
 provider "azuread" {
 }
 
+# Create user
+resource "azuread_user" "userA" {
+  user_principal_name = "userA@brashmi97gmail.onmicrosoft.com" 
+  display_name        = "userA"
+  password            = "Azure@123"
+}
+
 data "azuread_group" "gp" {
   display_name = "demopolicygroup"
 }
