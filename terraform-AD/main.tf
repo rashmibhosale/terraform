@@ -12,7 +12,7 @@ terraform {
   required_providers {
     azuread = {
       source  = "hashicorp/azuread"
-      version = "2.38.0"
+      version = "2.41.0"
     }
   }
   # Defining the location remote satate file, so that multiple user can work together.
@@ -32,24 +32,26 @@ data "azuread_domains" "default" {
 
 locals {
   domain_name = data.azuread_domains.default.domains.0.domain_name
-  users        = csvdecode(file("${path.module}/userlist.csv"))
-  groups      = toset(local.users[*].department)
+  users       = csvdecode(file("${path.module}/users.csv"))
 }
-
+resource "random_pet" "suffix" {
+  length = 2
+}
 resource "azuread_user" "users" {
   for_each = { for user in local.users : user.first_name => user }
 
   user_principal_name = format(
-    "%s.%s@%s",
-    lower(each.value.first_name),
+    "%s%s-%s@%s",
+    substr(lower(each.value.first_name), 0 , 1),
     lower(each.value.last_name),
+    random_pet.suffix.id,
     local.domain_name
   )
 
   password = format(
     "%s%s%s!",
     lower(each.value.last_name),
-    substr(lower(each.value.first_name), 0, 1),
+    substr(lower(each.value.first_name), 0 , 1),
     length(each.value.first_name)
   )
   force_password_change = true
@@ -57,12 +59,4 @@ resource "azuread_user" "users" {
   display_name = "${each.value.first_name} ${each.value.last_name}"
   department   = each.value.department
   job_title    = each.value.job_title
-}
-
-resource "azuread_group" "groups" {
-  for_each           = local.groups
-  display_name       = each.key
-  security_enabled   = true
-  assignable_to_role = true
-  members = [ for u in values(azuread_user.users) : u.id if u.department == each.key ]
 }
