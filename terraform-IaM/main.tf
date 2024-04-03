@@ -38,7 +38,6 @@ resource "azurerm_role_definition" "custom-vm-permission" {
   permissions {
     actions = [ 
         "Microsoft.Compute/*/read",
-        "Microsoft.Compute/virtualMachines/start/action",
         "Microsoft.Compute/virtualMachines/restart/action",
         "Microsoft.Compute/virtualMachines/deallocate/action"
      ]
@@ -50,7 +49,7 @@ resource "azurerm_role_definition" "custom-vm-permission" {
 }
 
 resource "azurerm_role_assignment" "assignrole-to-rg" {
-  scope = "/subscriptions/${var.subscription_id}"
+  scope = "/subscriptions/${var.subscription_id}/resourceGroup/demo-rg-01"
   role_definition_name = azurerm_role_definition.custom-vm-permission.name
   principal_id = data.azuread_group.gp.id
 }
