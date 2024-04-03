@@ -1,17 +1,17 @@
 resource "azuread_group" "engineering" {
-  display_name = "Education Department"
+  display_name = "DevOps Department"
   security_enabled = true
 }
 
 resource "azuread_group_member" "education" {
-  for_each = { for u in azuread_user.users: u.mail_nickname => u if u.department == "Education" }
+  for_each = { for u in azuread_user.users: u.mail_nickname => u if u.department == "DevOps" }
 
   group_object_id  = azuread_group.engineering.id
   member_object_id = each.value.id
 }
 
 resource "azuread_group" "managers" {
-  display_name = "Education - Managers"
+  display_name = "Software - Managers"
   security_enabled = true
 }
 
@@ -23,7 +23,7 @@ resource "azuread_group_member" "managers" {
 }
 
 resource "azuread_group" "engineers" {
-  display_name = "Education - Engineers"
+  display_name = "QA - Engineers"
   security_enabled = true
 }
 
