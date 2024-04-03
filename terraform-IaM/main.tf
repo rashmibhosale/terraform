@@ -42,11 +42,11 @@ resource "azurerm_role_definition" "custom-vm-permission" {
         "Microsoft.Compute/virtualMachines/restart/action",
         "Microsoft.Compute/virtualMachines/deallocate/action"
      ]
-     not_actions = [
-     "Microsoft.Compute/virtualMachines/stop/action"
-     ]
+     not_actions = []
   }
-  assignable_scopes = []
+  assignable_scopes = [
+    "/subscriptions/${var.subscription_id}"
+  ]
 }
 
 resource "azurerm_role_assignment" "assignrole-to-rg" {
