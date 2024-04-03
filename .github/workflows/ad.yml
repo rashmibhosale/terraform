@@ -1,4 +1,4 @@
-name: Terraform
+name: User-Group-Creation
 
 # Controls when the workflow will run
 on:
