@@ -51,6 +51,6 @@ resource "azurerm_role_definition" "custom-vm-permission" {
 
 resource "azurerm_role_assignment" "assignrole-to-rg" {
   scope = "/subscriptions/${var.subscription_id}"
-  role_definition_id = azurerm_role_definition.custom-vm-permission.id
+  role_definition_name = azurerm_role_definition.custom-vm-permission.name
   principal_id = data.azuread_group.gp.id
 }
