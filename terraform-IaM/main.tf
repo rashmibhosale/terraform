@@ -46,9 +46,7 @@ resource "azurerm_role_definition" "custom-vm-permission" {
      "Microsoft.Compute/virtualMachines/stop/action"
      ]
   }
-  assignable_scopes = [ 
-    "/subscriptions/${var.subscription_id}"
-   ]
+  assignable_scopes = []
 }
 
 resource "azurerm_role_assignment" "assignrole-to-rg" {
