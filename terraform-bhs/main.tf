@@ -85,10 +85,11 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   size                = "Standard_DS1_v2"
 
   admin_username = "rajeev"
-  admin_ssh_key {
-    username   = "rajeev"
-    public_key = file("${path.module}/ssh-key/key.pub")
-  }
+  admin_password = "rajeev123"
+ # admin_ssh_key {
+  #  username   = "rajeev"
+  #  public_key = file("${path.module}/ssh-key/key.pub")
+  #}
 
   os_disk {
     caching              = "ReadWrite"
