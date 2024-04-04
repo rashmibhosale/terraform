@@ -37,7 +37,7 @@ resource "azurerm_subnet" "subnet" {
 }
 
 resource "azurerm_public_ip" "pubip" {
-  count               = 2
+  count               = var.item_count
   name                = "${var.publicip_name}-${count.index}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -63,7 +63,7 @@ resource "azurerm_network_security_group" "nsg" {
 }
 
 resource "azurerm_network_interface" "nic" {
-  count               = 2
+  count               = var.item_count
   name                = "${var.nic_name}-${count.index}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
@@ -77,16 +77,15 @@ resource "azurerm_network_interface" "nic" {
 }
 
 resource "azurerm_linux_virtual_machine" "linvm" {
-  count               = 2
+  count               = var.item_count
   name                = "${var.linux_vm}-${count.index}"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   network_interface_ids = [azurerm_network_interface.nic[count.index].id]
   size                = "Standard_DS1_v2"
-
   admin_username = "rajeev"
   admin_ssh_key {
-    username   = "rajeev"
+   username   = "rajeev"
     public_key = file("${path.module}/ssh-key/key.pub")
   }
 
