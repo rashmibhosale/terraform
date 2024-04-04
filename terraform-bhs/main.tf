@@ -86,10 +86,10 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   disable_password_authentication = false
   admin_username = "rajeev"
   admin_password = "Rajeev@123"
- # admin_ssh_key {
-  #  username   = "rajeev"
-  #  public_key = file("${path.module}/ssh-key/key.pub")
-  #}
+  admin_ssh_key {
+   username   = "rajeev"
+    public_key = file("${path.module}/ssh-key/key.pub")
+  }
 
   os_disk {
     caching              = "ReadWrite"
