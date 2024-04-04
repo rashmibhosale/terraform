@@ -3,6 +3,11 @@ variable "resource_group_name" {
   description = "This resource group is used to create resource for demo"
   type        = string
 }
+variable "item_count" {
+  description = "Number of instance to create"
+  type        = number
+  default     = 3
+}
 
 variable "location" {
   default = "South India"
