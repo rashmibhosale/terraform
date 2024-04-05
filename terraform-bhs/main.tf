@@ -101,5 +101,16 @@ resource "azurerm_linux_virtual_machine" "linvm" {
     sku       = "16.04-LTS"
     version   = "latest"
   }
-}
 
+
+#provisioner "remote-exec" {
+#inline = [
+#"echo ${var-pwd} | sudo -s yum install epel-release -y",
+#"sudo yum install ansible -y",
+#connection {
+#type = "ssh"
+#user = var. usr
+#password = var. pwd
+#host = data. azurerm public_ip. example_public_ip.ip_address
+#}
+}
