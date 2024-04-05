@@ -84,8 +84,9 @@ resource "azurerm_linux_virtual_machine" "linvm" {
   network_interface_ids = [azurerm_network_interface.nic[count.index].id]
   size                = "Standard_DS1_v2"
   admin_username = "rajeev"
+  admin_password = var.admin_password
   admin_ssh_key {
-   username   = "rajeev"
+   username   = "rajeev"  
     public_key = file("${path.module}/ssh-key/key.pub")
   }
 
