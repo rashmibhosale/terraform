@@ -43,3 +43,8 @@ variable "linux_vm" {
   type = string
   default = "demo-linux-vm"
 }
+
+variable "admin_password" {
+  type = string
+  default = "Password@123"
+}
